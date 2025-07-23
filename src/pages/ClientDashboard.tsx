@@ -1,15 +1,9 @@
 import { useAuth } from '../contexts/AuthContext'
-import { useNavigate } from 'react-router-dom'
+import { UserButton } from '@stackframe/stack'
 import { DocumentTextIcon, CalendarIcon, CreditCardIcon, BellIcon } from '@heroicons/react/24/outline'
 
 const ClientDashboard = () => {
-  const { user, logout } = useAuth()
-  const navigate = useNavigate()
-
-  const handleLogout = () => {
-    logout()
-    navigate('/')
-  }
+  const { user } = useAuth()
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -21,12 +15,7 @@ const ClientDashboard = () => {
             </div>
             <div className="flex items-center space-x-4">
               <span className="text-gray-700">Welcome, {user?.name}</span>
-              <button
-                onClick={handleLogout}
-                className="text-gray-500 hover:text-gray-700"
-              >
-                Logout
-              </button>
+              <UserButton />
             </div>
           </div>
         </div>
