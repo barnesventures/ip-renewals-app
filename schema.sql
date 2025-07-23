@@ -58,5 +58,5 @@ CREATE INDEX idx_notifications_read ON notifications(read);
 -- Create an operator user (password: operator123)
 -- Note: You should change this password after first login
 INSERT INTO users (email, name, password_hash, is_operator)
-VALUES ('operator@ip-renew.com', 'System Operator', '$2a$10$zKQgZ5.Z5Z5Z5Z5Z5Z5Z5eXQwVXQwVXQwVXQwVXQwVXQwVXQwVX', true)
+VALUES ('operator@ip-renew.com', 'System Operator', '$2b$10$4iewCStvHYCMwJmAjkNBieQ8/EaCku3b7UWFsyAdW9bu9oy9RTp2e', true)
 ON CONFLICT (email) DO NOTHING;
