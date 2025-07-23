@@ -8,6 +8,6 @@ export default {
     extend: {},
   },
   plugins: [
-    require('@tailwindcss/forms'),
+    // Using dynamic import for CommonJS module
   ],
 }
