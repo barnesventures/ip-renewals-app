@@ -7,7 +7,7 @@ An automated intellectual property renewal management system built with React, T
 - **Landing Page**: Professional presentation of services
 - **Client Portal**: Dashboard for clients to manage their IP renewals
 - **Operator Portal**: Administrative dashboard for business operators
-- **Authentication**: Secure login/signup system with JWT tokens
+- **Authentication**: Stack Auth integration with email/password and OAuth support
 - **Database**: PostgreSQL via Neon for data persistence
 - **Storage**: Vercel Blob and Edge storage for documents
 
@@ -17,7 +17,7 @@ An automated intellectual property renewal management system built with React, T
 - **Styling**: Tailwind CSS
 - **Backend**: Vercel Functions (Serverless)
 - **Database**: Neon (PostgreSQL)
-- **Authentication**: JWT + bcrypt
+- **Authentication**: Stack Auth (Neon's auth solution)
 - **Deployment**: Vercel
 
 ## Setup Instructions
@@ -49,8 +49,10 @@ cp .env.example .env
 
 4. Configure environment variables in `.env`:
    - `DATABASE_URL`: Your Neon PostgreSQL connection string
-   - `JWT_SECRET`: A secure random string for JWT signing
-   - `BLOB_READ_WRITE_TOKEN`: From Vercel Blob storage
+   - `VITE_STACK_PROJECT_ID`: Your Stack Auth project ID
+   - `VITE_STACK_PUBLISHABLE_CLIENT_KEY`: Your Stack Auth publishable key
+   - `STACK_SECRET_SERVER_KEY`: Your Stack Auth server key
+   - `BLOB_READ_WRITE_TOKEN`: From Vercel Blob storage (optional)
 
 ### 3. Database Setup
 
@@ -77,8 +79,10 @@ git push -u origin main
 1. Import your GitHub repository in Vercel
 2. Configure environment variables in Vercel:
    - `DATABASE_URL`
-   - `JWT_SECRET`
-   - `BLOB_READ_WRITE_TOKEN`
+   - `VITE_STACK_PROJECT_ID`
+   - `VITE_STACK_PUBLISHABLE_CLIENT_KEY`
+   - `STACK_SECRET_SERVER_KEY`
+   - `BLOB_READ_WRITE_TOKEN` (optional)
 3. Deploy!
 
 ### 6. Vercel Storage Setup
@@ -87,13 +91,19 @@ git push -u origin main
 2. Create a new Blob store
 3. Copy the token to your environment variables
 
-## Default Operator Login
+## Creating Operator Accounts
 
-After setting up the database, you can login as the operator with:
-- Email: `operator@ip-renew.com`
-- Password: `operator123`
+Stack Auth handles all authentication. To create an operator account:
 
-**Important**: Change this password after first login!
+1. Sign up through the app as a regular user
+2. Go to your Stack Auth dashboard
+3. Find the user and update their metadata to include:
+   ```json
+   {
+     "isOperator": true
+   }
+   ```
+4. The user will now have access to the operator dashboard
 
 ## Development
 
@@ -107,11 +117,14 @@ Build for production:
 npm run build
 ```
 
-## API Endpoints
+## Authentication
 
-- `POST /api/auth/login` - User login
-- `POST /api/auth/signup` - User registration
-- `GET /api/auth/me` - Get current user
+Authentication is handled by Stack Auth, which provides:
+- Email/password authentication
+- OAuth providers (Google, GitHub, etc.)
+- Session management
+- User profile management
+- Secure token handling
 
 ## Project Structure
 
