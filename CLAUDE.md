@@ -98,10 +98,10 @@ schema.sql        - Database schema
 ## Key Features Implemented
 
 1. ✅ Landing page with service information
-2. ✅ Authentication system (login/signup)
-3. ✅ Client dashboard
-4. ✅ Operator dashboard
-5. ✅ JWT-based authentication
+2. ✅ Stack Auth integration (Neon's authentication solution)
+3. ✅ Client dashboard with user profile management
+4. ✅ Operator dashboard with system overview
+5. ✅ Email/password authentication with OAuth support
 6. ✅ Database schema for users, IP assets, renewals
 
 ## Next Features to Implement
